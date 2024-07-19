@@ -5,10 +5,21 @@ import nltk
 import os
 import re
 
+import os
 import nltk
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
+
+# NLTK 데이터 경로 설정
+if os.name == 'nt':  # Windows
+    nltk_data_path = os.path.join(os.getenv('APPDATA'), 'nltk_data')
+else:  # Linux/Mac
+    nltk_data_path = os.path.expanduser('~/nltk_data')
+
+nltk.data.path.append(nltk_data_path)
+
+# NLTK 데이터 다운로드
+nltk.download('punkt', download_dir=nltk_data_path)
+nltk.download('wordnet', download_dir=nltk_data_path)
+nltk.download('averaged_perceptron_tagger', download_dir=nltk_data_path)
 
 # NLTK 데이터 다운로드 경로 설정
 nltk_data_path = os.path.join(os.getenv('APPDATA'), 'nltk_data')
