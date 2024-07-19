@@ -5,6 +5,11 @@ import nltk
 import os
 import re
 
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
 # NLTK 데이터 다운로드 경로 설정
 nltk_data_path = os.path.join(os.getenv('APPDATA'), 'nltk_data')
 if not os.path.exists(nltk_data_path):
