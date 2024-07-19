@@ -2,31 +2,12 @@ import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import nltk
-import os
 import re
 
-import os
-import nltk
-
-# NLTK 데이터 경로 설정
-if os.name == 'nt':  # Windows
-    nltk_data_path = os.path.join(os.getenv('APPDATA'), 'nltk_data')
-else:  # Linux/Mac
-    nltk_data_path = os.path.expanduser('~/nltk_data')
-
-nltk.data.path.append(nltk_data_path)
-
-# NLTK 데이터 다운로드
-nltk.download('punkt', download_dir=nltk_data_path)
-nltk.download('wordnet', download_dir=nltk_data_path)
-nltk.download('averaged_perceptron_tagger', download_dir=nltk_data_path)
-
-# NLTK 데이터 다운로드 경로 설정
-nltk_data_path = os.path.join(os.getenv('APPDATA'), 'nltk_data')
-if not os.path.exists(nltk_data_path):
-    os.makedirs(nltk_data_path)
-nltk.data.path.append(nltk_data_path)
-nltk.download('punkt', download_dir=nltk_data_path)
+# NLTK 데이터 다운로드 (기본 경로 사용)
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
 
 # 질문과 답변 데이터베이스
 qa_dict = {
@@ -53,6 +34,8 @@ qa_dict = {
     "휴대폰":"스마트폰은 규정상 수거하지 않고 있습니다. 하지만 수업시간에 사용하다 걸리면 선생님께 제출해야 할 수도 있습니다.",
     "폰":"스마트폰은 규정상 수거하지 않고 있습니다. 하지만 수업시간에 사용하다 걸리면 선생님께 제출해야 할 수도 있습니다.",
     "핸드폰":"스마트폰은 규정상 수거하지 않고 있습니다. 하지만 수업시간에 사용하다 걸리면 선생님께 제출해야 할 수도 있습니다.",
+    "진예준":"김경오 따까리 길단유 따가리 소지훈 따까리 이리고 공식 ",
+    "제작자":"3학년 9반 김경오",
 }
 
 # 한국어 전처리 함수
